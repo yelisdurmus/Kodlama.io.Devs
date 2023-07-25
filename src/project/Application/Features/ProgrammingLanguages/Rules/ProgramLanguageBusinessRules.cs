@@ -24,5 +24,11 @@ namespace Application.Features.ProgramLanguages.Rules
         {
             if (ProgramLanguage == null) throw new BusinessException("Requested program language does not exist.");
         }
+
+        public async Task ProgramLanguageNameCanNotBeDuplicatedWhenUpdated(int id, string name)
+        {
+            IPaginate<ProgrammingLanguage> result = await _programLanguageRepository.GetListAsync(b => b.Name == name && b.Id != id);
+            if (result.Items.Any()) throw new BusinessException("Program Language name exists.");
+        }
     }
 }

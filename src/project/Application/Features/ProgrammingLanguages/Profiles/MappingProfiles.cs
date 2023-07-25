@@ -1,4 +1,5 @@
 ﻿using Application.Features.ProgramLanguages.Commands.CreateProgramLanguage;
+using Application.Features.ProgramLanguages.Commands.UpdateProgramLanguage;
 using Application.Features.ProgramLanguages.Dtos;
 using Application.Features.ProgramLanguages.Models;
 using AutoMapper;
@@ -16,6 +17,8 @@ namespace Application.Features.ProgramLanguages.Profiles
             CreateMap<IPaginate<ProgrammingLanguage>, ProgramLanguageListModel>().ReverseMap();
             CreateMap<ProgrammingLanguage, ProgramLanguageListDto>().ReverseMap();
             CreateMap<ProgrammingLanguage, ProgramLanguageGetByIdDto>().ReverseMap();
+            CreateMap<ProgrammingLanguage, UpdatedProgramLanguageDto>().ReverseMap();
+            CreateMap<ProgrammingLanguage, UpdateProgramLanguageCommand>().ReverseMap();
         }
     }
 }

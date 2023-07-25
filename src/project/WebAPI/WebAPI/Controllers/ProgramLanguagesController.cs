@@ -1,4 +1,5 @@
 ﻿using Application.Features.ProgramLanguages.Commands.CreateProgramLanguage;
+using Application.Features.ProgramLanguages.Commands.UpdateProgramLanguage;
 using Application.Features.ProgramLanguages.Dtos;
 using Application.Features.ProgramLanguages.Models;
 using Application.Features.ProgramLanguages.Queries.GetByIdProgramLanguage;
@@ -32,6 +33,13 @@ namespace WebAPI.Controllers
         {
             ProgramLanguageGetByIdDto programLanguageGetByIdDto = await Mediator.Send(getByIdProgramLanguageQuery);
             return Ok(programLanguageGetByIdDto);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateProgramLanguageCommand updateProgramLanguageCommand)
+        {
+            UpdatedProgramLanguageDto result = await Mediator.Send(updateProgramLanguageCommand);
+            return Created("", result);
         }
     }
 }
