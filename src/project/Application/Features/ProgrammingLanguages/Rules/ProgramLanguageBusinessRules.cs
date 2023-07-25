@@ -30,5 +30,11 @@ namespace Application.Features.ProgramLanguages.Rules
             IPaginate<ProgrammingLanguage> result = await _programLanguageRepository.GetListAsync(b => b.Name == name && b.Id != id);
             if (result.Items.Any()) throw new BusinessException("Program Language name exists.");
         }
+
+        public async Task ProgramLanguageNameCanNotBeWhenDeleted(int id)
+        {
+            IPaginate<ProgrammingLanguage> result = await _programLanguageRepository.GetListAsync(b => b.Id == id);
+            if (!result.Items.Any()) throw new BusinessException("Program Language exists.");
+        }
     }
 }

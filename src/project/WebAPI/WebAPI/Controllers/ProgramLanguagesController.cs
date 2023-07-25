@@ -1,4 +1,5 @@
 ﻿using Application.Features.ProgramLanguages.Commands.CreateProgramLanguage;
+using Application.Features.ProgramLanguages.Commands.DeleteProgramLanguage;
 using Application.Features.ProgramLanguages.Commands.UpdateProgramLanguage;
 using Application.Features.ProgramLanguages.Dtos;
 using Application.Features.ProgramLanguages.Models;
@@ -40,6 +41,13 @@ namespace WebAPI.Controllers
         {
             UpdatedProgramLanguageDto result = await Mediator.Send(updateProgramLanguageCommand);
             return Created("", result);
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete([FromRoute] DeleteProgramLanguageCommand  deleteProgramLanguageCommand)
+        {
+            DeletedProgramLanguageDto deletedProgramLanguageDto = await Mediator.Send(deleteProgramLanguageCommand);
+            return Ok(deleteProgramLanguageCommand);
         }
     }
 }
